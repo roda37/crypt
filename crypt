@@ -1,0 +1,33 @@
+#! /usr/bin/env python3
+from sys import argv
+from ast import literal_eval
+
+
+def encrypt():
+    program=literal_eval(open(argv[2],'r').read())
+    ask=input('Enter a message to be encrypted\n')
+    switch=ask.translate(str.maketrans(program))
+    a=switch[::-1]
+    print(a)
+
+def decrypt():
+    program=literal_eval(open(argv[2],'r').read())
+    ask=input('Enter a message to be decrypted\n')
+    switch=ask.translate(str.maketrans(program))
+    a=switch[::-1]
+    print(a)
+
+
+if len(argv) < 2:
+    print('Argument is required, for more information pass --help')
+
+elif argv[1]=='--encrypt':
+    encrypt()
+
+elif argv[1]=='--decrypt':
+    decrypt()
+
+elif argv[1]=='--help':
+    print('[help]\n\n[USAGE] crypt --function list\n\n[--help] shows this help screen\n\n[--function] is either encrypt or decrypt\n\n[list] this is where you specify your encrypt/decrypt list')
+else:
+    print('[help] crypt --function list')
